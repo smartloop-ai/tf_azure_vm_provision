@@ -27,7 +27,8 @@ resource "azurerm_public_ip" "main" {
 	name                = "${random_pet.main.id}-public-ip"
 	location            = var.location
 	resource_group_name = var.resource_name
-	allocation_method   = "Dynamic"
+    allocation_method   = "Dynamic"
+    domain_name_label   = var.domain_name_label
 }
 
 resource "azurerm_network_interface" "main" {

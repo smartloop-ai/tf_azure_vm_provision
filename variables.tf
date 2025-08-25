@@ -1,3 +1,8 @@
+variable "domain_name_label" {
+  description = "DNS name label for the public IP"
+  type        = string
+  default     = "vm-dns-label"
+}
 variable "vpc_cidr_block" {
   description = "CIDR block for the virtual network"
 }

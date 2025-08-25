@@ -7,3 +7,8 @@ output "admin_user" {
   description = "Admin user on the VM"
   value       = "azureadmin"
 }
+
+output "dns_name" {
+  description = "The DNS name of the public IP"
+  value       = azurerm_public_ip.main.fqdn
+}
