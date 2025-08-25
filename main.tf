@@ -60,7 +60,7 @@ resource "azurerm_linux_virtual_machine" "main" {
         disk_size_gb         = 256
 	}
 
-    disable_password_authentication = true
+    disable_password_authentication = false
     secure_boot_enabled = false
 
     source_image_reference {
