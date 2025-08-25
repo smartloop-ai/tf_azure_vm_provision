@@ -25,6 +25,11 @@ variable "admin_username" {
   default     = "azureadmin"
 }
 
+variable "admin_password" {
+  description = "Admin password for the VM"
+  default     = "P@ssw0rd!"
+}
+
 variable "admin_ssh_keys" {
   description = "List of admin SSH keys"
   type = list(object({
