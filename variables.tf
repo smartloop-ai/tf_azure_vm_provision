@@ -25,7 +25,10 @@ variable "admin_username" {
   default     = "azureadmin"
 }
 
-variable "admin_ssh_key" {
-  description = "Path to the SSH public key for the admin user"
-  default     = "~/.ssh/id_rsa.pub"
+variable "admin_ssh_keys" {
+  description = "List of admin SSH keys"
+  type = list(object({
+      username      = string
+      public_key = string
+  }))
 }

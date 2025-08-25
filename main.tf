@@ -1,9 +1,4 @@
 # Terraform plan to create azure virtual machine
-
-locals {
-    admin_ssh_key = file(var.admin_ssh_key)
-}
-
 resource "random_pet" "main" {
   length    = 2
   prefix    = "vm-"
@@ -60,9 +55,12 @@ resource "azurerm_linux_virtual_machine" "main" {
 		caching              = "ReadWrite"
 		storage_account_type = "Premium_LRS"
 		name                 = "${random_pet.main.id}-osdisk"
-        disk_size_gb         = 128
+        disk_size_gb         = 256
 	}
-	
+
+    disable_password_authentication = true
+    secure_boot_enabled = false
+
     source_image_reference {
 		publisher = "Canonical"
 		offer     = "ubuntu-24_04-lts"
@@ -70,13 +68,13 @@ resource "azurerm_linux_virtual_machine" "main" {
 		version   = "latest"
 	}
 
-
-    admin_ssh_key {
-        username   = var.admin_username
-        public_key = local.admin_ssh_key
+    dynamic "admin_ssh_key" {
+        for_each = var.admin_ssh_keys
+        content {
+            username   = admin_ssh_key.value.username
+            public_key = file(admin_ssh_key.value.public_key)
+        }
     }
-
-    secure_boot_enabled = false
 
     tags = {
         IaC = "true"

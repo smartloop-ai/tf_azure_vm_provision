@@ -19,9 +19,24 @@ subscription_id = "<your-subscription-id>"
 vpc_cidr_block  = "10.0.0.0/18"
 vm_size         = "Standard_NC40ads_H100_v5"
 
-admin_username = "azureadmin"
-admin_ssh_key  = "~/.ssh/id_rsa.pub"
+admin_ssh_keys = [
+  {
+    username   = "mehfuz"
+    public_key = "/home/mehfuz/.ssh/id_rsa.pub"
+  },
+  {
+    username   = "john"
+    public_key = "/home/john/.ssh/id_rsa.pub"
+  },
+  {
+    username   = "chris"
+    public_key = "/home/chris/.ssh/id_rsa.pub"
+  }
+]
 ```
+
+- Each entry in `admin_ssh_keys` will create a separate admin user on the VM with the specified SSH public key.
+- The value for `public_key` should be the path to the public key file (not the key string itself).
 
 3. **Initialize Terraform:**
 ```bash
@@ -56,6 +71,7 @@ terraform apply
 - Ensure your SSH public key files exist and are readable.
 - Make sure you have the correct permissions in Azure.
 - If you see variable errors, check that all required variables are set in `terraform.tfvars`.
+- If you do not see the public IP in the output, check that the output block in `outputs.tf` matches the resource name and is not commented out.
 
 ---
 
