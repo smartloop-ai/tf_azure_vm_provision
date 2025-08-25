@@ -19,20 +19,8 @@ subscription_id = "<your-subscription-id>"
 vpc_cidr_block  = "10.0.0.0/18"
 vm_size         = "Standard_NC40ads_H100_v5"
 
-admin_ssh_keys = [
-  {
-    username   = "mehfuz"
-    public_key = file("/home/mehfuz/.ssh/id_rsa.pub")
-  },
-  {
-    username   = "john"
-    public_key = file("/home/john/.ssh/id_rsa.pub")
-  },
-  {
-    username   = "chris"
-    public_key = file("/home/chris/.ssh/id_rsa.pub")
-  }
-]
+admin_username = "azureadmin"
+admin_ssh_key  = "~/.ssh/id_rsa.pub"
 ```
 
 3. **Initialize Terraform:**
