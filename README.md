@@ -24,14 +24,6 @@ admin_ssh_keys = [
     username   = "mehfuz"
     public_key = "/home/mehfuz/.ssh/id_rsa.pub"
   },
-  {
-    username   = "john"
-    public_key = "/home/john/.ssh/id_rsa.pub"
-  },
-  {
-    username   = "chris"
-    public_key = "/home/chris/.ssh/id_rsa.pub"
-  }
 ]
 ```
 
